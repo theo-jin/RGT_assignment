@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { use, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { getBookById, updateBook, deleteBook } from 'actions/fetchBooks';
 import BookDetail from '@/components/bookDetail';
@@ -17,13 +17,14 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { bookData } from 'schemas/books';
-
-export default function Page() {
+export interface ProductDetailPageProps {
+  params: Promise<{ id: string }>;
+}
+export default function Page({ params }: ProductDetailPageProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const router = useRouter();
-  const params = useParams();
-  const id = params?.id as string;
+  const { id } = use(params);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['book', id],

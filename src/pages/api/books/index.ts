@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { connectDB } from 'utils/database';
 import { NextApiRequest, NextApiResponse } from 'next';
 
