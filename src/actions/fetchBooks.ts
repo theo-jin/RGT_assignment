@@ -11,12 +11,12 @@ export const getBookData = async (searchQuery?: string) => {
   const res = await fetch(url, {
     cache: 'no-store',
   });
-  
+
   if (!res.ok) {
     console.error('Failed to fetch book data:', await res.text());
     throw new Error('Failed to fetch book data');
   }
-  
+
   return res.json();
 };
 
@@ -41,12 +41,12 @@ export const getBookById = async (id: string) => {
   const res = await fetch(`${BASE_URL}/api/books/${id}`, {
     cache: 'no-store',
   });
-  
+
   if (!res.ok) {
     console.error('Failed to fetch book by ID:', await res.text());
     throw new Error('Failed to fetch book data');
   }
-  
+
   return res.json();
 };
 
@@ -61,13 +61,13 @@ export const updateBook = async (
     },
     body: JSON.stringify(updateData),
   });
-  
+
   if (!res.ok) {
     const errorData = await res.json();
     console.error('Failed to update book:', errorData);
     throw new Error(`Failed to update book: ${errorData.error}`);
   }
-  
+
   return res.json();
 };
 
@@ -75,11 +75,11 @@ export const deleteBook = async (id: string) => {
   const res = await fetch(`${BASE_URL}/api/books/${id}`, {
     method: 'DELETE',
   });
-  
+
   if (!res.ok) {
     console.error('Failed to delete book:', await res.text());
     throw new Error('Failed to delete book');
   }
-  
+
   return res.json();
 };
