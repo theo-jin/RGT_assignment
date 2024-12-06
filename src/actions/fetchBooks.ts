@@ -1,14 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { bookData, newBookData } from 'schemas/books';
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
-
 export const getBookData = async (searchQuery?: string) => {
-  let url = `${BASE_URL}/api/books`;
+  let url = `/api/books`;
   if (searchQuery) {
     url += `?q=${encodeURIComponent(searchQuery)}`;
   }
   const res = await fetch(url, {
+    method: 'GET',
     cache: 'no-store',
   });
 
@@ -21,7 +20,7 @@ export const getBookData = async (searchQuery?: string) => {
 };
 
 export const postBookData = async (bookData: newBookData) => {
-  const res = await fetch(`${BASE_URL}/api/books`, {
+  const res = await fetch(`/api/books`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -38,7 +37,8 @@ export const postBookData = async (bookData: newBookData) => {
 };
 
 export const getBookById = async (id: string) => {
-  const res = await fetch(`${BASE_URL}/api/books/${id}`, {
+  const res = await fetch(`/api/books/${id}`, {
+    method: 'GET',
     cache: 'no-store',
   });
 
@@ -54,7 +54,7 @@ export const updateBook = async (
   id: string,
   { _id, ...updateData }: bookData
 ): Promise<bookData> => {
-  const res = await fetch(`${BASE_URL}/api/books/${id}`, {
+  const res = await fetch(`/api/books/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ export const updateBook = async (
 };
 
 export const deleteBook = async (id: string) => {
-  const res = await fetch(`${BASE_URL}/api/books/${id}`, {
+  const res = await fetch(`/api/books/${id}`, {
     method: 'DELETE',
   });
 
