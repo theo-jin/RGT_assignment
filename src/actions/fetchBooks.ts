@@ -1,13 +1,8 @@
-
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { bookData, newBookData } from 'schemas/books';
 
-export const getBookData = async (searchQuery?: string) => {
-  let url = `/api/books`;
-  if (searchQuery) {
-    url += `?q=${encodeURIComponent(searchQuery)}`;
-  }
-  const res = await fetch(url, {
+export const getBookData = async () => {
+  const res = await fetch(`/api/books`, {
     method: 'GET',
     cache: 'no-store',
   });

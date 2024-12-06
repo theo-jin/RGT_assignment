@@ -2,7 +2,6 @@
 
 import { useQuery } from '@tanstack/react-query';
 import BookList from '@/components/bookList';
-import Searchbar from '@/components/searchBar';
 import { getBookData } from 'actions/fetchBooks';
 
 export default function Home() {
@@ -16,12 +15,7 @@ export default function Home() {
 
   return (
     <div>
-      <section>
-        <Searchbar />
-      </section>
-      <section>
-        <BookList books={data} />
-      </section>
+      <BookList books={data} />
     </div>
   );
 }

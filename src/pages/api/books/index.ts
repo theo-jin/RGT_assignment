@@ -10,19 +10,7 @@ export default async function handler(
   if (req.method === 'GET') {
     try {
       const db = (await connectDB).db('bookData');
-      const { q } = req.query;
-      let query = {};
-
-      if (q) {
-        query = {
-          $or: [
-            { title: { $regex: q as string, $options: 'i' } },
-            { author: { $regex: q as string, $options: 'i' } },
-          ],
-        };
-      }
-
-      const bookData = await db.collection('bookData').find(query).toArray();
+      const bookData = await db.collection('bookData').find().toArray();
       res.status(200).json(bookData);
     } catch (error) {
       res.status(500).json({ error: 'Failed to fetch book data' });
@@ -39,7 +27,7 @@ export default async function handler(
       res.status(500).json({ error: 'Failed to add book' });
     }
   } else {
-    res.setHeader('Allow', ['GET']);
+    res.setHeader('Allow', ['GET', 'POST']);
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
