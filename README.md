@@ -6,6 +6,8 @@
 이 애플리케이션으로 검색하고, 상세 정보를 보고 편집하며, 각 책의 판매 수량을 확인할수 있습니다.
 
 프론트엔드는 Next.js로 구현했으며, 백엔드 부분은 Next.js api routes로 구현했습니다.
+DB는 MOGODB를 사용하였습니다.
+
 
 ## 기술 스택
 
@@ -45,9 +47,21 @@
 - 책 삭제 (DELETE/api/books/:id)
 
 ## 프로젝트 아키텍쳐
+
 ![alt text](image.png)
+
 ## DB
+
 ![alt text](image-1.png)
+
 ## 실행 방법
 
+```sh
+$ git clone https://github.com/theo-jin/RGT_assignment.git
+$ pnpm install
+$ pnpm run dev
+```
+
 ## 배포 링크
+
+https://rgt-assignment.vercel.app/
