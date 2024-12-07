@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { newBookData } from 'schemas/books';
-import { postBookData } from 'actions/fetchBooks';
+import { postBookData } from 'app/actions/fetchBooks';
 
 const initialBookData: newBookData = {
   title: '',

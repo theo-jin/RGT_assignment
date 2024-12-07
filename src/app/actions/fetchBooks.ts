@@ -8,6 +8,7 @@ export const getBookData = async () => {
     cache: 'no-store',
   });
   console.log(res);
+
   if (!res.ok) {
     console.error('Failed to fetch book data:', await res.text());
     throw new Error('Failed to fetch book data');

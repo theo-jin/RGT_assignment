@@ -3,7 +3,7 @@
 import { use, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useQuery, useMutation } from '@tanstack/react-query';
-import { getBookById, updateBook, deleteBook } from 'actions/fetchBooks';
+import { getBookById, updateBook, deleteBook } from 'app/actions/fetchBooks';
 import BookDetail from '@/components/bookDetail';
 import BookEditForm from '@/components/bookEditForm';
 import { queryClient } from 'app/providers/TanStackQueryProvider.tsx';
