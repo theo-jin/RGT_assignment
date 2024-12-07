@@ -8,7 +8,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log('handler 진입');
+  
   console.log(req.method);
   if (req.method === 'GET') {
     console.log(req.method);
