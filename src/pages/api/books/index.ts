@@ -8,6 +8,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  console.log('handler 진입');
   if (req.method === 'GET') {
     try {
       const db = (await connectDB).db('bookData');

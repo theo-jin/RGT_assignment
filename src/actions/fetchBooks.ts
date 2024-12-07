@@ -2,6 +2,7 @@
 import { bookData, newBookData } from 'schemas/books';
 
 export const getBookData = async () => {
+  console.log('actions');
   const res = await fetch(`/api/books`, {
     method: 'GET',
     cache: 'no-store',
