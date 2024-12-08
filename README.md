@@ -42,13 +42,23 @@ DB는 MOGODB를 사용하였습니다.
 
 - 책 목록 조회 (GET/api/books)
 - 책 상세 정보 조회 (GET /api/books/ id)
-- 책 추가 (POST /api/books)DELETE/api/books/:id
+- 책 추가 (POST /api/books)
 - 책 정보 수정 (PUT /api/books/:id)
 - 책 삭제 (DELETE/api/books/:id)
+
+
 
 ## 프로젝트 아키텍쳐
 
 ![alt text](image.png)
+
+
+## 프로젝트 상세 설명
+- 외부와 소통하는 액션 코드들은 actions폴더에 fetchBooks.ts에 모두 모아 전반적인 코드에서 액션을 따로 분리하여 배치하였습니다.
+- 페이지네이션과 필터링을 통한 검색기능과 같은 계산들은 hooks로 빼두어 따로 관리하였습니다. 또한 useMemo를 통해 계산 결과 캐싱하여, 비용이 많이 드는 계산의 결과를 메모이제이션하여 불필요한 재계산을 방지하도록 했습니다.
+- 백엔드 역할을 하는 api routes 들은 pages/api/books에서 처리하도록 했습니다.
+- 프로젝트 반응 속도를 높이기 위해 배포 vercel.json의 `regions`를 "icn1"(인천)으로 설정했습니다.
+- 전체적 타입관리는 zod를 통해서 하여 데이터 검증과 타입 안전성을 강화하였습니다.
 
 ## DB
 

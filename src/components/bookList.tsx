@@ -1,10 +1,12 @@
 'use client';
 
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import BookItem from '@/components/bookItem';
 import BookPagination from './pagination';
 import { bookData } from 'schemas/books';
+import { useBookSearch } from 'app/hooks/useSearch';
+import { useBookPagination } from 'app/hooks/usePagination';
+
 
 const ITEMS_PER_PAGE = 10;
 
@@ -13,37 +15,16 @@ interface BookListProps {
 }
 
 export default function BookList({ books }: BookListProps) {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [search, setSearch] = useState('');
   const router = useRouter();
+  const { search, filteredBooks, handleSearchChange } = useBookSearch(books);
+  const { currentPage, selectedItems: selectedBooks, handlePageChange } = useBookPagination(filteredBooks, ITEMS_PER_PAGE);
 
   if (books.length === 0) {
     return <p>검색 결과가 없습니다.</p>;
   }
 
-  const filteredBooks = books.filter(
-    (book) =>
-      book.title.toLowerCase().includes(search.toLowerCase()) ||
-      book.author.toLowerCase().includes(search.toLowerCase())
-  );
-
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const selectedBooks = filteredBooks.slice(
-    startIndex,
-    startIndex + ITEMS_PER_PAGE
-  );
-
-  const handlePageChange = (newPage: number) => {
-    setCurrentPage(newPage);
-  };
-
   const handleAddBook = () => {
     router.push('/register');
-  };
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-    setCurrentPage(1);
   };
 
   return (
