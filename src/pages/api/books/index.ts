@@ -8,12 +8,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-
   if (req.method === 'GET') {
     try {
       const db = (await connectDB).db('bookData');
       const bookData = await db.collection('bookData').find().toArray();
-      console.log(bookData);
       res.status(200).json(bookData);
     } catch (error) {
       res.status(500).json({ error: 'Failed to fetch book data' });
